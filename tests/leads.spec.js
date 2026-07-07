@@ -12,8 +12,8 @@ test('deve cadastrar um lead na fila de espera', async ({ page }) => {
   // await page.locator('input[name=name]').fill('Matheus T');
   // await page.locator('input[placeholder="Seu nome completo"]').fill('Matheus T');
 
-  await page.getByPlaceholder('Seu nome completo').fill('Matheus T');
-  await page.getByPlaceholder('Seu email principal').fill('matheus@yahoo.com');
+  await page.getByPlaceholder('Informe seu nome').fill('Matheus T');
+  await page.getByPlaceholder('Informe seu email').fill('matheus@yahoo.com');
 
   await page.getByTestId('modal').getByText('Quero entrar na fila!').click();
 
@@ -37,8 +37,8 @@ test('não deve cadastrar um lead com email incorreto', async ({ page }) => {
 
   await expect(page.getByTestId('modal').getByRole('heading')).toHaveText('Fila de espera');
 
-  await page.getByPlaceholder('Seu nome completo').fill('Matheus T');
-  await page.getByPlaceholder('Seu email principal').fill('matheus.com.br');
+  await page.getByPlaceholder('Informe seu nome').fill('Matheus T');
+  await page.getByPlaceholder('Informe seu email').fill('matheus.com.br');
 
   await page.getByTestId('modal').getByText('Quero entrar na fila!').click();
 
@@ -52,7 +52,7 @@ test('não deve cadastrar um lead quando o nome não é preenchido', async ({ pa
 
   await expect(page.getByTestId('modal').getByRole('heading')).toHaveText('Fila de espera');
 
-  await page.getByPlaceholder('Seu email principal').fill('matheus@yahoo.com');
+  await page.getByPlaceholder('Informe seu email').fill('matheus@yahoo.com');
 
   await page.getByTestId('modal').getByText('Quero entrar na fila!').click();
 
@@ -66,7 +66,7 @@ test('não deve cadastrar um lead quando o email não é preenchido', async ({ p
 
   await expect(page.getByTestId('modal').getByRole('heading')).toHaveText('Fila de espera');
 
-  await page.getByPlaceholder('Seu nome completo').fill('Matheus T');
+  await page.getByPlaceholder('Informe seu nome').fill('Matheus T');
 
   await page.getByTestId('modal').getByText('Quero entrar na fila!').click();
 
