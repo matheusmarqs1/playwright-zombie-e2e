@@ -1,0 +1,1 @@
+Este repositório contém a suíte de testes automatizados E2E desenvolvida em Playwright com JavaScript. Os testes foram projetados para validar as regras de negócio, fluxos de exceção e integração de banco de dados do sistema fictício Zombie+ (uma aplicação Web contendo API REST e PostgreSQL).
