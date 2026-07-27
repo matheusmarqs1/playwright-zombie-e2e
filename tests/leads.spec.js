@@ -1,10 +1,16 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 
-const {LandingPage} = require('./pages/LandingPage');
+import {LandingPage} from './pages/LandingPage';
+
+/** @type {LandingPage} */
+let landingPage;
+
+test.beforeEach(async ({ page })=> {
+  landingPage = new LandingPage(page);
+})
 
 test('deve cadastrar um lead na fila de espera', async ({ page }) => {
-  const landingPage = new LandingPage(page);
   
   await landingPage.visit();
   await landingPage.openLeadModal();
@@ -17,8 +23,6 @@ test('deve cadastrar um lead na fila de espera', async ({ page }) => {
 });
 
 test('não deve cadastrar um lead com email incorreto', async ({ page }) => {
-
-  const landingPage = new LandingPage(page);
   
   await landingPage.visit();
   await landingPage.openLeadModal();
@@ -27,7 +31,6 @@ test('não deve cadastrar um lead com email incorreto', async ({ page }) => {
 });
 
 test('não deve cadastrar um lead quando o nome não é preenchido', async ({ page }) => {
-  const landingPage = new LandingPage(page);
   
   await landingPage.visit();
   await landingPage.openLeadModal();
@@ -36,7 +39,6 @@ test('não deve cadastrar um lead quando o nome não é preenchido', async ({ pa
 });
 
 test('não deve cadastrar um lead quando o email não é preenchido', async ({ page }) => {
-  const landingPage = new LandingPage(page);
   
   await landingPage.visit();
   await landingPage.openLeadModal();
@@ -45,7 +47,6 @@ test('não deve cadastrar um lead quando o email não é preenchido', async ({ p
 });
 
 test('não deve cadastrar um lead quando nenhum campo é preenchido', async ({ page }) => {
-  const landingPage = new LandingPage(page);
   
   await landingPage.visit();
   await landingPage.openLeadModal();
