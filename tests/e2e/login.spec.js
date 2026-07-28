@@ -30,3 +30,27 @@ test('não deve logar com senha incorreta', async ({ page })=> {
 
     await toast.haveText(message);
 })
+
+test('não deve logar quando o email é inválido', async ({ page })=> {
+    await loginPage.visit();
+    await loginPage.submitForm('www.matheus.com.br', 'pwd123');
+    await loginPage.alertHaveText('Email incorreto');
+})
+
+test('não deve logar quando o email não é preenchido', async ({ page })=> {
+    await loginPage.visit();
+    await loginPage.submitForm('', 'abc123');
+    await loginPage.alertHaveText('Campo obrigatório');
+})
+
+test('não deve logar quando a senha não é preenchida', async ({ page })=> {
+    await loginPage.visit();
+    await loginPage.submitForm('admin@zombieplus.com', '');
+    await loginPage.alertHaveText('Campo obrigatório');
+})
+
+test('não deve logar quando nenhum campo é preenchido', async ({ page })=> {
+    await loginPage.visit();
+    await loginPage.submitForm('', '');
+    await loginPage.alertHaveText(['Campo obrigatório', 'Campo obrigatório']);
+})
