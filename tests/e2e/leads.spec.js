@@ -1,13 +1,19 @@
 // @ts-check
 import { test, expect } from '@playwright/test';
 
-import {LandingPage} from './pages/LandingPage';
+import {LandingPage} from '../pages/LandingPage';
+
+import { Toast } from '../pages/Components';
 
 /** @type {LandingPage} */
 let landingPage;
 
+/** @type {Toast} */
+let toast;
+
 test.beforeEach(async ({ page })=> {
   landingPage = new LandingPage(page);
+  toast = new Toast(page);
 })
 
 test('deve cadastrar um lead na fila de espera', async ({ page }) => {
@@ -16,8 +22,8 @@ test('deve cadastrar um lead na fila de espera', async ({ page }) => {
   await landingPage.openLeadModal();
   await landingPage.submitLeadForm('Matheus T', 'matheus@yahoo.com');
 
-   const message = 'Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato!';
-  await landingPage.toastHaveText(message);
+  const message = 'Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato!';
+  await toast.haveText(message);
   
 
 });
