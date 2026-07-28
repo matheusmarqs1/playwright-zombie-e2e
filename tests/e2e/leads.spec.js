@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 
 import {LandingPage} from '../pages/LandingPage';
 
-import { Toast } from '../pages/Components';
+import { Toast } from '../components/Toast';
 
 /** @type {LandingPage} */
 let landingPage;

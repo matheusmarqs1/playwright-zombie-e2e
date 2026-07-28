@@ -2,24 +2,29 @@
 import { test, expect } from '@playwright/test';
 
 import {LoginPage} from '../pages/LoginPage';
+import {MoviesPage} from '../pages/MoviesPage';
 
-import { Toast } from '../pages/Components';
+import { Toast } from '../components/Toast';
 
 /** @type {LoginPage} */
 let loginPage;
+
+/** @type {MoviesPage} */
+let moviesPage;
 
 /** @type {Toast} */
 let toast;
 
 test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
+    moviesPage = new MoviesPage(page);
     toast = new Toast(page);
 })
 
 test('deve logar como administrador', async ({ page })=> {
     await loginPage.visit();
     await loginPage.submitForm('admin@zombieplus.com', 'pwd123');
-    await loginPage.isLoggedIn();
+    await moviesPage.isLoggedIn();
 })
 
 test('não deve logar com senha incorreta', async ({ page })=> {
