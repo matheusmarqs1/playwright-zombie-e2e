@@ -33,6 +33,26 @@ test('deve cadastrar um lead na fila de espera', async ({ page }) => {
 
 });
 
+test('não deve cadastrar um lead quando o email já existe', async ({ page }) => {
+
+  const leadName = faker.person.fullName();
+  const leadEmail = faker.internet.email();
+  
+  await landingPage.visit();
+  await landingPage.openLeadModal();
+  await landingPage.submitLeadForm(leadName, leadEmail);
+
+  await landingPage.visit();
+  await landingPage.openLeadModal();
+  await landingPage.submitLeadForm(leadName, leadEmail);
+
+  const message = 'O endereço de e-mail fornecido já está registrado em nossa fila de espera.';
+  await toast.haveText(message);
+  
+
+});
+
+
 test('não deve cadastrar um lead com email incorreto', async ({ page }) => {
   
   await landingPage.visit();
