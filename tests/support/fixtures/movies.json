@@ -1,0 +1,82 @@
+{
+    "create": {
+        "title": "O Poderoso Chefão",
+        "overview": "O patriarca idoso de uma dinastia do crime organizado transfere o controle de seu império clandestino para seu filho relutante.",
+        "company": "Paramount Pictures",
+        "release_year": 1972,
+        "featured": false,
+        "cover": "/assets/images/covers/godfather.png"
+    },
+    "pulp_fiction": {
+        "title": "Pulp Fiction: Tempo de Violência",
+        "overview": "As vidas de dois assassinos da máfia, um boxeador, a esposa de um gângster e dois bandidos se entrelaçam em quatro histórias de violência e redenção.",
+        "company": "Miramax Films",
+        "release_year": 1994,
+        "featured": false,
+        "cover": "/assets/images/covers/pulp_fiction.png"
+    },
+    "o_senhor_dos_aneis_retorno_do_rei": {
+        "title": "O Senhor dos Anéis: O Retorno do Rei",
+        "overview": "Gandalf e Aragorn lideram o Mundo dos Homens contra o exército de Sauron para desviar o olhar dele de Frodo e Sam enquanto eles se aproximam do Monte da Perdição.",
+        "company": "New Line Cinema",
+        "release_year": 2003,
+        "featured": false,
+        "cover": "/assets/images/covers/lotr_return_king.png"
+    },
+    "batman_o_cavaleiro_das_trevas": {
+        "title": "Batman: O Cavaleiro das Trevas",
+        "overview": "Quando a ameaça conhecida como Coringa surge de seu passado misterioso e causa estragos em Gotham, Batman deve aceitar um dos maiores testes psicológicos e físicos.",
+        "company": "Warner Bros. Pictures",
+        "release_year": 2008,
+        "featured": false,
+        "cover": "/assets/images/covers/dark_knight.png"
+    },
+    "forrest_gump": {
+        "title": "Forrest Gump: O Contador de Histórias",
+        "overview": "As presidências de Kennedy e Johnson, a Guerra do Vietnã e outros eventos históricos se desenrolam através da perspectiva de um homem do Alabama com um QI de 75.",
+        "company": "Paramount Pictures",
+        "release_year": 1994,
+        "featured": false,
+        "cover": "/assets/images/covers/forrest_gump.png"
+    },
+    "a_origem": {
+        "title": "A Origem",
+        "overview": "Um ladrão que rouba segredos corporativos por meio do uso de tecnologia de compartilhamento de sonhos recebe a tarefa inversa de plantar uma ideia na mente de um CEO.",
+        "company": "Warner Bros. Pictures",
+        "release_year": 2010,
+        "featured": false,
+        "cover": "/assets/images/covers/inception.png"
+    },
+    "star_wars_o_imperio_contra_ataca": {
+        "title": "Star Wars: Episódio V - O Império Contra-Ataca",
+        "overview": "Após os rebeldes serem derrotados brutalmente pelo Império no planeta de gelo Hoth, Luke Skywalker inicia seu treinamento Jedi com Yoda.",
+        "company": "20th Century Fox",
+        "release_year": 1980,
+        "featured": false,
+        "cover": "/assets/images/covers/empire_strikes_back.png"
+    },
+    "matrix": {
+        "title": "Matrix",
+        "overview": "Um hacker de computador descobre a verdadeira natureza de sua realidade e seu papel na guerra contra os controladores dela, uma inteligência artificial.",
+        "company": "Warner Bros. Pictures",
+        "release_year": 1999,
+        "featured": false,
+        "cover": "/assets/images/covers/matrix.png"
+    },
+    "de_volta_para_o_futuro": {
+        "title": "De Volta para o Futuro",
+        "overview": "Um adolescente de 17 anos é enviado acidentalmente 30 anos no passado em um DeLorean modificado, inventado por seu amigo cientista excêntrico.",
+        "company": "Universal Pictures",
+        "release_year": 1985,
+        "featured": false,
+        "cover": "/assets/images/covers/back_to_the_future.png"
+    },
+    "interestelar": {
+        "title": "Interestelar",
+        "overview": "Uma equipe de exploradores viaja através de um buraco de minhoca no espaço na tentativa de garantir a sobrevivência da humanidade procurando um novo lar.",
+        "company": "Paramount Pictures",
+        "release_year": 2014,
+        "featured": false,
+        "cover": "/assets/images/covers/interstellar.png"
+    }
+}
