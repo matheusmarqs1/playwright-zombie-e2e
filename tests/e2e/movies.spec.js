@@ -1,34 +1,14 @@
-import { test, expect } from '@playwright/test';
+// @ts-check
+import { test } from '../support';
 
 import movies from '../support/fixtures/movies.json';
 import { executeQuery } from '../support/database';
 
-import {LoginPage} from '../pages/LoginPage';
-import {MoviesPage} from '../pages/MoviesPage';
-
-import { Toast } from '../components/Toast';
-
-/** @type {LoginPage} */
-let loginPage;
-
-/** @type {MoviesPage} */
-let moviesPage;
-
-/** @type {Toast} */
-let toast;
-
-test.beforeEach(async ({ page }) => {
-    loginPage = new LoginPage(page);
-    moviesPage = new MoviesPage(page);
-    toast = new Toast(page);
-})
-
-
-test('deve poder cadastrar um novo filme', async ({ page }) => {
+test('deve poder cadastrar um novo filme', async ({ loginPage, moviesPage, toast }) => {
 
     const movie = movies.create;
 
-    await executeQuery(`DELETE FROM movies WHERE title = '${movie.title}'`);
+    await executeQuery('DELETE FROM movies WHERE title = $1', [movie.title]);
 
     await loginPage.visit();
     await loginPage.submitForm('admin@zombieplus.com', 'pwd123');

@@ -12,19 +12,12 @@ const DbConfig = {
 
 const pool = new Pool(DbConfig);
 
-export async function executeQuery(query){
-    let client;
+export async function executeQuery(query, params = []){
+    const client = await pool.connect();
     try{
-        client = await pool.connect();
-        const result = await client.query(query);
-        return result;
-        
-    } catch(error){
-        console.log('Error executing query: ', error);
+        return await client.query(query, params);
     } finally {
-        if (client) {
-            client.release();
-        }
+       client.release();
     }
 
 }

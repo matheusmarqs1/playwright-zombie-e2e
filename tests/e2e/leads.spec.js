@@ -1,24 +1,9 @@
 // @ts-check
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../support';
 
 import { faker } from '@faker-js/faker';
 
-import {LandingPage} from '../pages/LandingPage';
-
-import { Toast } from '../components/Toast';
-
-/** @type {LandingPage} */
-let landingPage;
-
-/** @type {Toast} */
-let toast;
-
-test.beforeEach(async ({ page })=> {
-  landingPage = new LandingPage(page);
-  toast = new Toast(page);
-})
-
-test('deve cadastrar um lead na fila de espera', async ({ page }) => {
+test('deve cadastrar um lead na fila de espera', async ({ landingPage, toast }) => {
 
   const leadName = faker.person.fullName();
   const leadEmail = faker.internet.email();
@@ -33,7 +18,7 @@ test('deve cadastrar um lead na fila de espera', async ({ page }) => {
 
 });
 
-test('não deve cadastrar um lead quando o email já existe', async ({ page, request }) => {
+test('não deve cadastrar um lead quando o email já existe', async ({ landingPage, toast, request }) => {
 
   const leadName = faker.person.fullName();
   const leadEmail = faker.internet.email();
@@ -58,7 +43,7 @@ test('não deve cadastrar um lead quando o email já existe', async ({ page, req
 });
 
 
-test('não deve cadastrar um lead com email incorreto', async ({ page }) => {
+test('não deve cadastrar um lead com email incorreto', async ({ landingPage }) => {
   
   await landingPage.visit();
   await landingPage.openLeadModal();
@@ -66,7 +51,7 @@ test('não deve cadastrar um lead com email incorreto', async ({ page }) => {
   await landingPage.alertHaveText('Email incorreto');
 });
 
-test('não deve cadastrar um lead quando o nome não é preenchido', async ({ page }) => {
+test('não deve cadastrar um lead quando o nome não é preenchido', async ({ landingPage }) => {
   
   await landingPage.visit();
   await landingPage.openLeadModal();
@@ -74,7 +59,7 @@ test('não deve cadastrar um lead quando o nome não é preenchido', async ({ pa
   await landingPage.alertHaveText('Campo obrigatório');
 });
 
-test('não deve cadastrar um lead quando o email não é preenchido', async ({ page }) => {
+test('não deve cadastrar um lead quando o email não é preenchido', async ({ landingPage }) => {
   
   await landingPage.visit();
   await landingPage.openLeadModal();
@@ -82,7 +67,7 @@ test('não deve cadastrar um lead quando o email não é preenchido', async ({ p
   await landingPage.alertHaveText('Campo obrigatório');
 });
 
-test('não deve cadastrar um lead quando nenhum campo é preenchido', async ({ page }) => {
+test('não deve cadastrar um lead quando nenhum campo é preenchido', async ({ landingPage }) => {
   
   await landingPage.visit();
   await landingPage.openLeadModal();

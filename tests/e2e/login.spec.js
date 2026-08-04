@@ -1,33 +1,13 @@
 // @ts-check
-import { test, expect } from '@playwright/test';
+import { test } from '../support';
 
-import {LoginPage} from '../pages/LoginPage';
-import {MoviesPage} from '../pages/MoviesPage';
-
-import { Toast } from '../components/Toast';
-
-/** @type {LoginPage} */
-let loginPage;
-
-/** @type {MoviesPage} */
-let moviesPage;
-
-/** @type {Toast} */
-let toast;
-
-test.beforeEach(async ({ page }) => {
-    loginPage = new LoginPage(page);
-    moviesPage = new MoviesPage(page);
-    toast = new Toast(page);
-})
-
-test('deve logar como administrador', async ({ page })=> {
+test('deve logar como administrador', async ({ loginPage, moviesPage })=> {
     await loginPage.visit();
     await loginPage.submitForm('admin@zombieplus.com', 'pwd123');
     await moviesPage.isLoggedIn();
 })
 
-test('não deve logar com senha incorreta', async ({ page })=> {
+test('não deve logar com senha incorreta', async ({ loginPage, toast })=> {
     await loginPage.visit();
     await loginPage.submitForm('admin@zombieplus.com', 'abc123');
 
@@ -36,25 +16,25 @@ test('não deve logar com senha incorreta', async ({ page })=> {
     await toast.containText(message);
 })
 
-test('não deve logar quando o email é inválido', async ({ page })=> {
+test('não deve logar quando o email é inválido', async ({ loginPage })=> {
     await loginPage.visit();
     await loginPage.submitForm('www.matheus.com.br', 'pwd123');
     await loginPage.alertHaveText('Email incorreto');
 })
 
-test('não deve logar quando o email não é preenchido', async ({ page })=> {
+test('não deve logar quando o email não é preenchido', async ({ loginPage })=> {
     await loginPage.visit();
     await loginPage.submitForm('', 'abc123');
     await loginPage.alertHaveText('Campo obrigatório');
 })
 
-test('não deve logar quando a senha não é preenchida', async ({ page })=> {
+test('não deve logar quando a senha não é preenchida', async ({ loginPage })=> {
     await loginPage.visit();
     await loginPage.submitForm('admin@zombieplus.com', '');
     await loginPage.alertHaveText('Campo obrigatório');
 })
 
-test('não deve logar quando nenhum campo é preenchido', async ({ page })=> {
+test('não deve logar quando nenhum campo é preenchido', async ({ loginPage })=> {
     await loginPage.visit();
     await loginPage.submitForm('', '');
     await loginPage.alertHaveText(['Campo obrigatório', 'Campo obrigatório']);
