@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 import movies from '../support/fixtures/movies.json';
+import { executeQuery } from '../support/database';
 
 import {LoginPage} from '../pages/LoginPage';
 import {MoviesPage} from '../pages/MoviesPage';
@@ -26,6 +27,8 @@ test.beforeEach(async ({ page }) => {
 test('deve poder cadastrar um novo filme', async ({ page }) => {
 
     const movie = movies.create;
+
+    await executeQuery(`DELETE FROM movies WHERE title = '${movie.title}'`);
 
     await loginPage.visit();
     await loginPage.submitForm('admin@zombieplus.com', 'pwd123');
