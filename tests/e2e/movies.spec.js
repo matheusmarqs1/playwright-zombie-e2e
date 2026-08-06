@@ -18,3 +18,20 @@ test('deve poder cadastrar um novo filme', async ({ loginPage, moviesPage, toast
 
     await toast.containText('Cadastro realizado com sucesso!');
 })
+
+test('não deve cadastrar quando os campos obrigatórios não forem preenchidos', async ({ loginPage, moviesPage }) => {
+    
+    await loginPage.visit();
+    await loginPage.submitForm('admin@zombieplus.com', 'pwd123');
+    await moviesPage.isLoggedIn();
+
+    await moviesPage.goForm();
+    await moviesPage.submit();
+
+    await moviesPage.alertHaveText([
+        'Por favor, informe o título.',
+        'Por favor, informe a sinopse.',
+        'Por favor, informe a empresa distribuidora.',
+        'Por favor, informe o ano de lançamento.'
+    ])
+})
