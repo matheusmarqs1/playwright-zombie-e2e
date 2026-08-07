@@ -3,14 +3,14 @@ import { test, expect } from '../support';
 
 import { faker } from '@faker-js/faker';
 
-test('deve cadastrar um lead na fila de espera', async ({ landingPage, toast }) => {
+test('deve cadastrar um lead na fila de espera', async ({ leadActions, toast }) => {
 
   const leadName = faker.person.fullName();
   const leadEmail = faker.internet.email();
   
-  await landingPage.visit();
-  await landingPage.openLeadModal();
-  await landingPage.submitLeadForm(leadName, leadEmail);
+  await leadActions.visit();
+  await leadActions.openLeadModal();
+  await leadActions.submitLeadForm(leadName, leadEmail);
 
   const message = 'Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato!';
   await toast.containText(message);
@@ -18,7 +18,7 @@ test('deve cadastrar um lead na fila de espera', async ({ landingPage, toast }) 
 
 });
 
-test('não deve cadastrar um lead quando o email já existe', async ({ landingPage, toast, request }) => {
+test('não deve cadastrar um lead quando o email já existe', async ({ leadActions, toast, request }) => {
 
   const leadName = faker.person.fullName();
   const leadEmail = faker.internet.email();
@@ -32,9 +32,9 @@ test('não deve cadastrar um lead quando o email já existe', async ({ landingPa
 
   expect(newLead.ok()).toBeTruthy();
 
-  await landingPage.visit();
-  await landingPage.openLeadModal();
-  await landingPage.submitLeadForm(leadName, leadEmail);
+  await leadActions.visit();
+  await leadActions.openLeadModal();
+  await leadActions.submitLeadForm(leadName, leadEmail);
 
   const message = 'O endereço de e-mail fornecido já está registrado em nossa fila de espera.';
   await toast.containText(message);
@@ -43,35 +43,36 @@ test('não deve cadastrar um lead quando o email já existe', async ({ landingPa
 });
 
 
-test('não deve cadastrar um lead com email incorreto', async ({ landingPage }) => {
+
+test('não deve cadastrar um lead com email incorreto', async ({ leadActions }) => {
   
-  await landingPage.visit();
-  await landingPage.openLeadModal();
-  await landingPage.submitLeadForm('Matheus T', 'matheus.com.br');
-  await landingPage.alertHaveText('Email incorreto');
+  await leadActions.visit();
+  await leadActions.openLeadModal();
+  await leadActions.submitLeadForm('Matheus T', 'matheus.com.br');
+  await leadActions.assertAlertText('Email incorreto');
 });
 
-test('não deve cadastrar um lead quando o nome não é preenchido', async ({ landingPage }) => {
+test('não deve cadastrar um lead quando o nome não é preenchido', async ({ leadActions }) => {
   
-  await landingPage.visit();
-  await landingPage.openLeadModal();
-  await landingPage.submitLeadForm('', 'matheus@yahoo.com');
-  await landingPage.alertHaveText('Campo obrigatório');
+  await leadActions.visit();
+  await leadActions.openLeadModal();
+  await leadActions.submitLeadForm('', 'matheus@yahoo.com');
+  await leadActions.assertAlertText('Campo obrigatório');
 });
 
-test('não deve cadastrar um lead quando o email não é preenchido', async ({ landingPage }) => {
+test('não deve cadastrar um lead quando o email não é preenchido', async ({ leadActions }) => {
   
-  await landingPage.visit();
-  await landingPage.openLeadModal();
-  await landingPage.submitLeadForm('Matheus T', '');
-  await landingPage.alertHaveText('Campo obrigatório');
+  await leadActions.visit();
+  await leadActions.openLeadModal();
+  await leadActions.submitLeadForm('Matheus T', '');
+  await leadActions.assertAlertText('Campo obrigatório');
 });
 
-test('não deve cadastrar um lead quando nenhum campo é preenchido', async ({ landingPage }) => {
+test('não deve cadastrar um lead quando nenhum campo é preenchido', async ({ leadActions }) => {
   
-  await landingPage.visit();
-  await landingPage.openLeadModal();
-  await landingPage.submitLeadForm('', '');
-  await landingPage.alertHaveText(['Campo obrigatório', 'Campo obrigatório']);
+  await leadActions.visit();
+  await leadActions.openLeadModal();
+  await leadActions.submitLeadForm('', '');
+  await leadActions.assertAlertText(['Campo obrigatório', 'Campo obrigatório']);
 });
 

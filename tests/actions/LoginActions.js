@@ -1,9 +1,15 @@
 import { expect } from '@playwright/test';
 
-export class LoginPage {
+export class LoginActions {
 
     constructor(page){
         this.page = page;
+    }
+
+    async login(email, password){
+        await this.visit();
+        await this.submitForm(email, password);
+        await this.assertLoggedIn();
     }
 
     async visit(){
@@ -20,8 +26,13 @@ export class LoginPage {
         await this.page.getByText('Entrar').click();
     }
 
-    async alertHaveText(text){
+    async assertAlertText(text){
         const alert = this.page.locator('span[class$=alert]');
         await expect(alert).toHaveText(text);
+    }
+
+    async assertLoggedIn(){
+        await this.page.waitForLoadState('networkidle');
+        await expect(this.page).toHaveURL(/.*admin\/movies/);
     }
 }

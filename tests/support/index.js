@@ -1,32 +1,32 @@
 import { test as base, expect } from '@playwright/test';
 
-import {LoginPage} from '../pages/LoginPage';
-import {MoviesPage} from '../pages/MoviesPage';
-import {LandingPage} from '../pages/LandingPage';
+import {LoginActions} from '../actions/LoginActions';
+import {MovieActions} from '../actions/MovieActions';
+import {LeadActions} from '../actions/LeadActions';
 
 import { Toast } from '../components/Toast';
 
 /**
- * @typedef {Object} MyPages
- * @property {LoginPage} loginPage
- * @property {MoviesPage} moviesPage
- * @property {LandingPage} landingPage
+ * @typedef {Object} MyActions
+ * @property {LoginActions} loginActions
+ * @property {MovieActions} movieActions
+ * @property {LeadActions} leadActions
  * @property {Toast} toast
  */
 
-/** @type {import('@playwright/test').TestType<import('@playwright/test').PlaywrightTestArgs & import('@playwright/test').PlaywrightTestOptions & MyPages, import('@playwright/test').PlaywrightWorkerArgs & import('@playwright/test').PlaywrightWorkerOptions>} */
+/** @type {import('@playwright/test').TestType<import('@playwright/test').PlaywrightTestArgs & import('@playwright/test').PlaywrightTestOptions & MyActions, import('@playwright/test').PlaywrightWorkerArgs & import('@playwright/test').PlaywrightWorkerOptions>} */
 export const test = base.extend({
-    loginPage: async ({ page }, use) => {
-        const loginPage = new LoginPage(page);
-        await use(loginPage);
+    loginActions: async ({ page }, use) => {
+        const loginActions = new LoginActions(page);
+        await use(loginActions);
     },
-    moviesPage: async ({ page }, use) => {
-        const moviesPage = new MoviesPage(page);
-        await use(moviesPage);
+    movieActions: async ({ page }, use) => {
+        const movieActions = new MovieActions(page);
+        await use(movieActions);
     },
-    landingPage: async ({ page }, use) => {
-        const landingPage = new LandingPage(page);
-        await use(landingPage);
+    leadActions: async ({ page }, use) => {
+        const leadActions = new LeadActions(page);
+        await use(leadActions);
     },
     toast: async ({ page }, use) => {
         const toast = new Toast(page);
