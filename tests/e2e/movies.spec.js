@@ -12,7 +12,7 @@ test('deve poder cadastrar um novo filme', async ({ loginActions, movieActions, 
 
     await loginActions.login('admin@zombieplus.com', 'pwd123', 'Admin');
 
-    await movieActions.createMovie(movie.title, movie.overview, movie.company, movie.release_year);
+    await movieActions.createMovie(movie);
 
     await toast.containText('Cadastro realizado com sucesso!');
 })
