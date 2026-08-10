@@ -1,10 +1,10 @@
 import { test as base, expect } from '@playwright/test';
 
-import {LoginActions} from '../actions/LoginActions';
-import {MovieActions} from '../actions/MovieActions';
-import {LeadActions} from '../actions/LeadActions';
+import {LoginActions} from './actions/LoginActions';
+import {MovieActions} from './actions/MovieActions';
+import {LeadActions} from './actions/LeadActions';
 
-import { Toast } from '../components/Toast';
+import { Toast } from './components/Toast';
 
 /**
  * @typedef {Object} MyActions
