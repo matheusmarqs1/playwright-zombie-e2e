@@ -4,7 +4,7 @@ import { test } from '../support';
 test('deve logar como administrador', async ({ loginActions })=> {
     await loginActions.visit();
     await loginActions.submitForm('admin@zombieplus.com', 'pwd123');
-    await loginActions.assertLoggedIn();
+    await loginActions.assertLoggedIn('Admin');
 })
 
 test('não deve logar com senha incorreta', async ({ loginActions, toast })=> {

@@ -10,7 +10,7 @@ test('deve poder cadastrar um novo filme', async ({ loginActions, movieActions, 
 
     await executeQuery('DELETE FROM movies WHERE title = $1', [movie.title]);
 
-    await loginActions.login('admin@zombieplus.com', 'pwd123');
+    await loginActions.login('admin@zombieplus.com', 'pwd123', 'Admin');
 
     await movieActions.createMovie(movie.title, movie.overview, movie.company, movie.release_year);
 
@@ -19,7 +19,7 @@ test('deve poder cadastrar um novo filme', async ({ loginActions, movieActions, 
 
 test('não deve cadastrar quando os campos obrigatórios não forem preenchidos', async ({ loginActions, movieActions }) => {
     
-    await loginActions.login('admin@zombieplus.com', 'pwd123');
+    await loginActions.login('admin@zombieplus.com', 'pwd123', 'Admin');
 
     await movieActions.openCreateForm();
     await movieActions.submitMovieForm();

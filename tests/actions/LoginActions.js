@@ -6,10 +6,10 @@ export class LoginActions {
         this.page = page;
     }
 
-    async login(email, password){
+    async login(email, password, username){
         await this.visit();
         await this.submitForm(email, password);
-        await this.assertLoggedIn();
+        await this.assertLoggedIn(username);
     }
 
     async visit(){
@@ -31,8 +31,8 @@ export class LoginActions {
         await expect(alert).toHaveText(text);
     }
 
-    async assertLoggedIn(){
-        await this.page.waitForLoadState('networkidle');
-        await expect(this.page).toHaveURL(/.*admin\/movies/);
+    async assertLoggedIn(username){
+        const loggedUser = this.page.locator('.logged-user');
+        await expect(loggedUser).toHaveText(`Olá, ${username}`);
     }
 }
