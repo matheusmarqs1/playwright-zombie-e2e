@@ -7,13 +7,13 @@
         "featured": false,
         "cover": "/covers/movies/Godfather_1972.jpg"
     },
-    "pulp_fiction": {
+    "duplicate": {
         "title": "Pulp Fiction: Tempo de Violência",
         "overview": "As vidas de dois assassinos da máfia, um boxeador, a esposa de um gângster e dois bandidos se entrelaçam em quatro histórias de violência e redenção.",
-        "company": "Miramax Films",
+        "company": "Fox Entertainment",
         "release_year": 1994,
-        "featured": false,
-        "cover": "/assets/images/covers/pulp_fiction.png"
+        "featured": true,
+        "cover": "/covers/movies/Pulp_Fiction_cover.jpg"
     },
     "o_senhor_dos_aneis_retorno_do_rei": {
         "title": "O Senhor dos Anéis: O Retorno do Rei",

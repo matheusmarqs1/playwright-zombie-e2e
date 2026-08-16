@@ -4,11 +4,13 @@ import { test } from '../support';
 import movies from '../support/fixtures/movies.json';
 import { executeQuery } from '../support/database';
 
+test.beforeEach(async () => {
+    await executeQuery('DELETE FROM movies');
+})
+
 test('deve poder cadastrar um novo filme', async ({ loginActions, movieActions, toast }) => {
 
     const movie = movies.create;
-
-    await executeQuery('DELETE FROM movies WHERE title = $1', [movie.title]);
 
     await loginActions.login('admin@zombieplus.com', 'pwd123', 'Admin');
 
@@ -30,4 +32,16 @@ test('não deve cadastrar quando os campos obrigatórios não forem preenchidos'
         'Por favor, informe a empresa distribuidora.',
         'Por favor, informe o ano de lançamento.'
     ])
+})
+
+test('não deve cadastrar quando título já estiver cadastrado', async ({ loginActions, movieActions, toast }) => {
+
+    const movie = movies.duplicate;
+
+    await loginActions.login('admin@zombieplus.com', 'pwd123', 'Admin');
+    await movieActions.createMovie(movie);
+    await toast.containText('Cadastro realizado com sucesso!');
+
+    await movieActions.createMovie(movie);
+    await toast.containText('Este conteúdo já encontra-se cadastrado no catálogo');
 })
