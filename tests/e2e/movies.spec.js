@@ -38,12 +38,11 @@ test('não deve cadastrar quando título já estiver cadastrado', async ({ login
 
     const movie = movies.duplicate;
 
-    const token = await apiClient.getToken();
+    await apiClient.getToken();
+    await apiClient.createMovie(movie);
 
-    /* 
     await loginActions.login('admin@zombieplus.com', 'pwd123', 'Admin');
 
     await movieActions.createMovie(movie);
     await toast.containText('Este conteúdo já encontra-se cadastrado no catálogo');
-    */
 })
