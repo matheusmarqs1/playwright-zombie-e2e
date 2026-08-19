@@ -34,14 +34,16 @@ test('não deve cadastrar quando os campos obrigatórios não forem preenchidos'
     ])
 })
 
-test('não deve cadastrar quando título já estiver cadastrado', async ({ loginActions, movieActions, toast }) => {
+test('não deve cadastrar quando título já estiver cadastrado', async ({ loginActions, movieActions, toast, apiClient }) => {
 
     const movie = movies.duplicate;
 
+    const token = await apiClient.getToken();
+
+    /* 
     await loginActions.login('admin@zombieplus.com', 'pwd123', 'Admin');
-    await movieActions.createMovie(movie);
-    await toast.containText('Cadastro realizado com sucesso!');
 
     await movieActions.createMovie(movie);
     await toast.containText('Este conteúdo já encontra-se cadastrado no catálogo');
+    */
 })

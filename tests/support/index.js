@@ -3,6 +3,7 @@ import { test as base, expect } from '@playwright/test';
 import {LoginActions} from './actions/LoginActions';
 import {MovieActions} from './actions/MovieActions';
 import {LeadActions} from './actions/LeadActions';
+import { ApiClient } from './api/ApiClient';
 
 import { Toast } from './components/Toast';
 
@@ -12,6 +13,7 @@ import { Toast } from './components/Toast';
  * @property {MovieActions} movieActions
  * @property {LeadActions} leadActions
  * @property {Toast} toast
+ * @property {ApiClient} apiClient
  */
 
 /** @type {import('@playwright/test').TestType<import('@playwright/test').PlaywrightTestArgs & import('@playwright/test').PlaywrightTestOptions & MyActions, import('@playwright/test').PlaywrightWorkerArgs & import('@playwright/test').PlaywrightWorkerOptions>} */
@@ -31,6 +33,10 @@ export const test = base.extend({
     toast: async ({ page }, use) => {
         const toast = new Toast(page);
         await use(toast);
+    },
+    apiClient: async ({ request }, use) => {
+        const apiClient = new ApiClient(request);
+        await use(apiClient);
     }
 });
 
